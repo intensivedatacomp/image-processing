@@ -7,9 +7,9 @@ build-backend = "setuptools.build_meta"
 # --------------------------------------------------
 
 [project]
-name = "simpletorchtrainer"
+name = "image-processing"
 version = "0.0.1"
-description = "A lightweight wrapper around PyTorch training loops for rapid neural network experimentation."
+description = "Edge detection with coustum convolution kerner"
 readme = "README.md"
 license = "GPL-3.0"
 license-files = ["LICENSE*"]
@@ -21,10 +21,6 @@ requires-python = ">=3.9"
 
 keywords = [
     "pytorch",
-    "deep-learning",
-    "machine-learning",
-    "training-loop",
-    "neural-networks"
 ]
 
 classifiers = [
@@ -41,7 +37,8 @@ dependencies = [
     "torchvision>=0.15",
     "numpy>=1.22",
     "scikit-learn>=1.1",
-    "pre-commit"
+    "pre-commit",
+    "opencv-python" 
 ]
 
 # --------------------------------------------------
@@ -62,10 +59,7 @@ dev = [
     "torchtyping"
 ]
 
-examples = [
-    "matplotlib",
-    "tqdm"
-]
+
 
 docs = [
     "sphinx",
@@ -79,13 +73,19 @@ docs = [
 
 [project.urls]
 
-Homepage = "https://github.com/yourusername/simpletorchtrainer"
-Repository = "https://github.com/yourusername/simpletorchtrainer"
-Issues = "https://github.com/yourusername/simpletorchtrainer/issues"
+Homepage = "https://github.com/dcintlab/image-processing"
+Repository = "https://github.com/dcintlab/image-processing"
+Issues = "https://github.com/dcintlab/image-processing/issues"
 
 # --------------------------------------------------
 # Pytest configuration
 # --------------------------------------------------
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["create_kernel", "image_processing"]
 
 [tool.pytest.ini_options]
 
