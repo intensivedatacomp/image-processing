@@ -1,0 +1,146 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+# --------------------------------------------------
+# Project metadata
+# --------------------------------------------------
+
+[project]
+name = "simpletorchtrainer"
+version = "0.0.1"
+description = "A lightweight wrapper around PyTorch training loops for rapid neural network experimentation."
+readme = "README.md"
+license = "GPL-3.0"
+license-files = ["LICENSE*"]
+authors = [
+    {name = "Balazs Paszkal Halmos"}
+]
+
+requires-python = ">=3.9"
+
+keywords = [
+    "pytorch",
+    "deep-learning",
+    "machine-learning",
+    "training-loop",
+    "neural-networks"
+]
+
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence"
+]
+
+dependencies = [
+    "torch>=2.0",
+    "torchvision>=0.15",
+    "numpy>=1.22",
+    "scikit-learn>=1.1",
+    "pre-commit"
+]
+
+# --------------------------------------------------
+# Optional dependency groups
+# --------------------------------------------------
+
+[project.optional-dependencies]
+
+dev = [
+    "pytest>=7",
+    "pytest-cov>=4",
+    "coverage-badge",
+    "black>=23",
+    "ruff>=0.1",
+    "mypy>=1.5",
+    "pydocstyle",
+    "nbqa>=1.7",
+    "torchtyping"
+]
+
+examples = [
+    "matplotlib",
+    "tqdm"
+]
+
+docs = [
+    "sphinx",
+    "sphinx-rtd-theme",
+    "numpydoc"
+]
+
+# --------------------------------------------------
+# URLs
+# --------------------------------------------------
+
+[project.urls]
+
+Homepage = "https://github.com/yourusername/simpletorchtrainer"
+Repository = "https://github.com/yourusername/simpletorchtrainer"
+Issues = "https://github.com/yourusername/simpletorchtrainer/issues"
+
+# --------------------------------------------------
+# Pytest configuration
+# --------------------------------------------------
+
+[tool.pytest.ini_options]
+
+testpaths = [
+    "tests"
+]
+
+addopts = [
+    "-v",
+    "--strict-markers",
+    "--disable-warnings"
+]
+
+# --------------------------------------------------
+# Coverage configuration
+# --------------------------------------------------
+
+[tool.coverage.run]
+
+source = ["simpletorchtrainer"]
+
+omit = [
+    "tests/*"
+]
+
+# --------------------------------------------------
+# Black formatting
+# --------------------------------------------------
+
+[tool.black]
+
+line-length = 88
+target-version = ["py313"]
+
+# --------------------------------------------------
+# Ruff linter
+# --------------------------------------------------
+
+[tool.ruff]
+
+line-length = 88
+lint.select = ["E", "F", "I", "D"]
+lint.ignore = [
+    "E402" # Module level import not at top of file
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+# --------------------------------------------------
+# MyPy typing
+# --------------------------------------------------
+
+[tool.mypy]
+
+python_version = "3.13"
+strict = true
+ignore_missing_imports = true
