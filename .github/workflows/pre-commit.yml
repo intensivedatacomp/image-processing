@@ -31,6 +31,8 @@ jobs:
             precommit-${{ runner.os }}-
 
       - name: Install + run pre-commit
+        env:
+          SKIP: no-commit-to-branch
         run: |
           pip install --no-cache-dir pre-commit
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
