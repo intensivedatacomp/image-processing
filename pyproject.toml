@@ -38,7 +38,7 @@ dependencies = [
     "numpy>=1.22",
     "scikit-learn>=1.1",
     "pre-commit",
-    "opencv-python" 
+    "opencv-python"
 ]
 
 # --------------------------------------------------
@@ -105,7 +105,7 @@ addopts = [
 
 [tool.coverage.run]
 
-source = ["simpletorchtrainer"]
+source = ["src"]
 
 omit = [
     "tests/*"
@@ -128,9 +128,7 @@ target-version = ["py313"]
 
 line-length = 88
 lint.select = ["E", "F", "I", "D"]
-lint.ignore = [
-    "E402" # Module level import not at top of file
-]
+lint.ignore = []
 
 [tool.ruff.lint.pydocstyle]
 convention = "numpy"
