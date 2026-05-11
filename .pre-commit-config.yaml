@@ -10,8 +10,6 @@ repos:
       - id: check-merge-conflict  # Check for files that contain merge conflict strings.
       - id: check-added-large-files  # Prevent giant files from being committed.
         args: [ '--maxkb=5000' ]
-      - id: no-commit-to-branch
-        args: [--branch, main, --branch, master]
 
   # --- Black (Python files) ---
   - repo: https://github.com/psf/black
@@ -55,3 +53,18 @@ repos:
     hooks:
       - id: pydocstyle
         args: [--convention=numpy]
+
+  # --- Prevent direct push to main/master ---
+  - repo: local
+    hooks:
+      - id: no-push-to-main
+        name: Prevent direct push to main/master
+        language: system
+        entry: bash -c 'while read local_ref local_sha remote_ref remote_sha; do
+          if [[ "$remote_ref" == "refs/heads/main" || "$remote_ref" == "refs/heads/master" ]]; then
+            echo "Direct push to main/master is not allowed. Open a PR instead.";
+            exit 1;
+          fi; done'
+        stages: [pre-push]
+        pass_filenames: false
+        always_run: true
