@@ -9,18 +9,22 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "image-processing"
 version = "0.0.1"
-description = "Edge detection with coustum convolution kerner"
+description = "Edge detection with custom convolution kernel."
 readme = "README.md"
 license = "GPL-3.0"
 license-files = ["LICENSE*"]
 authors = [
+    {name = "Bence Hajbel"},
     {name = "Balazs Paszkal Halmos"}
 ]
 
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 
 keywords = [
     "pytorch",
+    "image processing",
+    "edge detection",
+    "convolution"
 ]
 
 classifiers = [
@@ -77,12 +81,12 @@ Homepage = "https://github.com/dcintlab/image-processing"
 Repository = "https://github.com/dcintlab/image-processing"
 Issues = "https://github.com/dcintlab/image-processing/issues"
 
-# --------------------------------------------------
-# Pytest configuration
-# --------------------------------------------------
 [tool.setuptools]
 package-dir = {"" = "src"}
 
+# --------------------------------------------------
+# Pytest configuration
+# --------------------------------------------------
 [tool.setuptools.packages.find]
 where = ["src"]
 include = ["create_kernel", "image_processing"]
@@ -118,7 +122,7 @@ omit = [
 [tool.black]
 
 line-length = 88
-target-version = ["py313"]
+target-version = ["py314"]
 
 # --------------------------------------------------
 # Ruff linter
@@ -139,6 +143,6 @@ convention = "numpy"
 
 [tool.mypy]
 
-python_version = "3.13"
+python_version = "3.14"
 strict = true
 ignore_missing_imports = true
