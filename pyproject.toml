@@ -36,40 +36,7 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Artificial Intelligence"
 ]
 
-dependencies = [
-    "torch>=2.0",
-    "torchvision>=0.15",
-    "numpy>=1.22",
-    "scikit-learn>=1.1",
-    "pre-commit",
-    "opencv-python"
-]
-
-# --------------------------------------------------
-# Optional dependency groups
-# --------------------------------------------------
-
-[project.optional-dependencies]
-
-dev = [
-    "pytest>=7",
-    "pytest-cov>=4",
-    "coverage-badge",
-    "black>=23",
-    "ruff>=0.1",
-    "mypy>=1.5",
-    "pydocstyle",
-    "nbqa>=1.7",
-    "torchtyping"
-]
-
-
-
-docs = [
-    "sphinx",
-    "sphinx-rtd-theme",
-    "numpydoc"
-]
+dynamic = ["dependencies", "optional-dependencies"]
 
 # --------------------------------------------------
 # URLs
@@ -80,6 +47,13 @@ docs = [
 Homepage = "https://github.com/dcintlab/image-processing"
 Repository = "https://github.com/dcintlab/image-processing"
 Issues = "https://github.com/dcintlab/image-processing/issues"
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+
+[tool.setuptools.dynamic.optional-dependencies]
+dev = {file = ["requirements-dev.txt"]}
+docs = {file = ["requirements-docs.txt"]}
 
 [tool.setuptools]
 package-dir = {"" = "src"}
