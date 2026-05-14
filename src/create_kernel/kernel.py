@@ -2,6 +2,7 @@
 
 import numpy as np
 import PIL.Image
+import PIL.ImageOps
 import torch
 import torchvision
 
@@ -20,19 +21,19 @@ class Kernel:
         torch.Tensor
             Tensor of edge detection masks.
         """
-        Nx2 = 5
-        Ny2 = 20
-        Nv2 = 20
-        emask = torch.zeros((2 * Nv2, 2 * Nv2))
-        for i in range(0, Nx2):
-            for j in range(-Ny2, Ny2):
-                emask[Nv2 + i, Nv2 + j] = 1.0 / (0.05 * np.abs(j) + 1)
-        emaskPIL = torchvision.transforms.ToPILImage()(emask)
+        nx2 = 5
+        ny2 = 20
+        nv2 = 20
+        emask = torch.zeros((2 * nv2, 2 * nv2))
+        for i in range(0, nx2):
+            for j in range(-ny2, ny2):
+                emask[nv2 + i, nv2 + j] = 1.0 / (0.05 * np.abs(j) + 1)
+        emask_pil = torchvision.transforms.ToPILImage()(emask)
 
-        Nmasks = 10
+        nmasks = 10
         allmasks = []
-        for phi in np.arange(0.0, 180.0, 180.0 / Nmasks):
-            img = emaskPIL.rotate(phi, PIL.Image.NEAREST, expand=0)
+        for phi in np.arange(0.0, 180.0, 180.0 / nmasks):
+            img = emask_pil.rotate(phi, PIL.Image.NEAREST, expand=0)
             rt = torchvision.transforms.ToTensor()(img)
             rt = rt - torchvision.transforms.ToTensor()(
                 PIL.ImageOps.mirror(PIL.ImageOps.flip(img))
