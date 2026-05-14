@@ -9,18 +9,22 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "image-processing"
 version = "0.0.1"
-description = "Edge detection with coustum convolution kerner"
+description = "Edge detection with custom convolution kernel."
 readme = "README.md"
 license = "GPL-3.0"
 license-files = ["LICENSE*"]
 authors = [
+    {name = "Bence Hajbel"},
     {name = "Balazs Paszkal Halmos"}
 ]
 
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 
 keywords = [
     "pytorch",
+    "image processing",
+    "edge detection",
+    "convolution"
 ]
 
 classifiers = [
@@ -32,40 +36,7 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Artificial Intelligence"
 ]
 
-dependencies = [
-    "torch>=2.0",
-    "torchvision>=0.15",
-    "numpy>=1.22",
-    "scikit-learn>=1.1",
-    "pre-commit",
-    "opencv-python"
-]
-
-# --------------------------------------------------
-# Optional dependency groups
-# --------------------------------------------------
-
-[project.optional-dependencies]
-
-dev = [
-    "pytest>=7",
-    "pytest-cov>=4",
-    "coverage-badge",
-    "black>=23",
-    "ruff>=0.1",
-    "mypy>=1.5",
-    "pydocstyle",
-    "nbqa>=1.7",
-    "torchtyping"
-]
-
-
-
-docs = [
-    "sphinx",
-    "sphinx-rtd-theme",
-    "numpydoc"
-]
+dynamic = ["dependencies", "optional-dependencies"]
 
 # --------------------------------------------------
 # URLs
@@ -77,12 +48,19 @@ Homepage = "https://github.com/dcintlab/image-processing"
 Repository = "https://github.com/dcintlab/image-processing"
 Issues = "https://github.com/dcintlab/image-processing/issues"
 
-# --------------------------------------------------
-# Pytest configuration
-# --------------------------------------------------
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+
+[tool.setuptools.dynamic.optional-dependencies]
+dev = {file = ["requirements-dev.txt"]}
+docs = {file = ["requirements-docs.txt"]}
+
 [tool.setuptools]
 package-dir = {"" = "src"}
 
+# --------------------------------------------------
+# Pytest configuration
+# --------------------------------------------------
 [tool.setuptools.packages.find]
 where = ["src"]
 include = ["create_kernel", "image_processing"]
@@ -118,7 +96,7 @@ omit = [
 [tool.black]
 
 line-length = 88
-target-version = ["py313"]
+target-version = ["py314"]
 
 # --------------------------------------------------
 # Ruff linter
@@ -127,8 +105,21 @@ target-version = ["py313"]
 [tool.ruff]
 
 line-length = 88
-lint.select = ["E", "F", "I", "D"]
-lint.ignore = []
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle errors
+    "F",    # pyflakes — undefined names, unused imports
+    "I",    # isort — import ordering
+    "N",    # pep8-naming — class/function/variable naming conventions
+    "D",    # pydocstyle — docstring style
+    "UP",   # pyupgrade — modern Python syntax
+    "B",    # flake8-bugbear — common bugs and design issues
+    "C4",   # flake8-comprehensions — idiomatic list/dict/set comprehensions
+    "SIM",  # flake8-simplify — flags unnecessarily complex code
+    "RUF",  # Ruff-specific rules
+]
+ignore = []
 
 [tool.ruff.lint.pydocstyle]
 convention = "numpy"
@@ -139,6 +130,6 @@ convention = "numpy"
 
 [tool.mypy]
 
-python_version = "3.13"
+python_version = "3.14"
 strict = true
 ignore_missing_imports = true
