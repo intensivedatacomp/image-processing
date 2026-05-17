@@ -2,6 +2,7 @@
 
 ## 🤝 Contributing
 
+
 Contributions are welcome.
 
 Here is an example of adding a new feature to the code:
