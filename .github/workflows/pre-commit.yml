@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-24.04
 
     container:
-      image: ghcr.io/halmosb/docker-builder/python:3.13-cpu-v0.3.3
+      image: ghcr.io/halmosb/docker-builder/python:3.14-cpu-v0.3.3
       options: --user 0
 
     steps:
