@@ -7,4 +7,3 @@ mypy>=1.10
 pydocstyle>=6.3
 nbqa>=1.8
 torchtyping>=0.1.5
-pre-commit>=3.7
