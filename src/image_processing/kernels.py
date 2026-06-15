@@ -165,16 +165,19 @@ class ElongatedMaskKernel(BaseKernel):
         half = p.kernel_half_size
         size = 2 * half + 1  # odd size → clear centre pixel, no asymmetric-pad warning
 
+        errors: list[str] = []
         if p.stripe_half_length > half:
-            raise ValueError(
+            errors.append(
                 f"stripe_half_length ({p.stripe_half_length}) must be "
-                f"<= kernel_half_size ({half})."
+                f"<= kernel_half_size ({half})"
             )
         if p.stripe_half_width > half:
-            raise ValueError(
+            errors.append(
                 f"stripe_half_width ({p.stripe_half_width}) must be "
-                f"<= kernel_half_size ({half})."
+                f"<= kernel_half_size ({half})"
             )
+        if errors:
+            raise ValueError(". ".join(errors) + ".")
 
         canvas = self._make_canvas(p, size, half)
         canvas_pil = torchvision.transforms.ToPILImage()(canvas)

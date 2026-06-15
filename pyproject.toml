@@ -121,6 +121,30 @@ select = [
 ]
 ignore = []
 
+[tool.ruff.lint.per-file-ignores]
+"tests/*.py" = [
+    "D100",  # missing docstring in public module — test modules need no module docstring
+    "D101",  # missing docstring in public class — test classes are named descriptively
+    "D102",  # missing docstring in public method — test methods are named descriptively
+    "D103",  # missing docstring in public function — standalone test functions are self-documenting
+    "D104",  # missing docstring in public package — test package __init__ needs none
+]
+"examples/*.py" = [
+    "D100",  # missing docstring in public module — prose lives in comments, not module docstrings
+    "D101",  # missing docstring in public class — example classes are explained by surrounding comments
+    "D102",  # missing docstring in public method — example methods are explained by surrounding comments
+    "D103",  # missing docstring in public function — example functions are explained by surrounding comments
+    "D104",  # missing docstring in public package — not applicable to standalone scripts
+]
+"examples/*.ipynb" = [
+    "D100",  # missing docstring in public module — notebook cells are not Python modules
+    "D101",  # missing docstring in public class — example classes in notebooks are explained by markdown cells
+    "D102",  # missing docstring in public method — example methods in notebooks are explained by markdown cells
+    "D103",  # missing docstring in public function — example functions in notebooks are explained by markdown cells
+    "D104",  # missing docstring in public package — not applicable to notebooks
+    "E402",  # module level import not at top of file — notebook cells share one namespace but are linted as a flat file
+]
+
 [tool.ruff.lint.pydocstyle]
 convention = "numpy"
 
@@ -133,3 +157,9 @@ convention = "numpy"
 python_version = "3.12"
 strict = true
 ignore_missing_imports = true
+
+# pytest decorators (@pytest.fixture, @pytest.mark.parametrize) are not fully typed,
+# so strict mode triggers [untyped-decorator] on every fixture/parametrize in tests.
+[[tool.mypy.overrides]]
+module = ["tests.*"]
+disallow_untyped_decorators = false
