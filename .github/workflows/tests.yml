@@ -47,7 +47,7 @@ jobs:
 
       - name: Run tests
         run: |
-          pytest --cov=artificial_dataset \
+          pytest --cov=image_processing \
             --durations=0 \
             --cov-report term \
             --cov-report html:coverage-html \
@@ -65,7 +65,7 @@ jobs:
             junit-report.xml
 
       - name: Deploy coverage badge
-        if: (matrix.python-version == '3.14') && (github.event_name == 'push') && (github.repository == 'dcintlab/artificial-dataset')
+        if: (matrix.python-version == '3.14') && (github.event_name == 'push') && (github.repository == 'intensivedatacomp/image-processing')
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
