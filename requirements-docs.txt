@@ -5,8 +5,7 @@ numpydoc>=1.7
 sphinx
 pydata-sphinx-theme
 myst-parser
-sphinx.ext.autodoc
-sphinx.ext.napoleon
+
 sphinx-autodoc-typehints
 sphinx-copybutton
 sphinx-design
