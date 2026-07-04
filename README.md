@@ -103,7 +103,8 @@ git commit -m "Useful commit message"
 ```
 ### 3. Push the branch to remote
 ```bash
-git push --set-upstream origin feature/your-awesome-feature
+git switch -c feature/your-awesome-feature
+git push --set-upstream origin feature/your-awesome-feature 
 ```
 ### 4. Open a Pull Request
 ```bash
