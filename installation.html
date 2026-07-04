@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>installation &#8212; image-processing  documentation</title>
+    <title>Installation Guide — Image Processing &#8212; image-processing  documentation</title>
   
   
   
@@ -48,7 +48,7 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="usage" href="usage.html" />
+    <link rel="next" title="Usage Guide — Image Processing Research Package" href="usage.html" />
     <link rel="prev" title="Welcome to the documentation!" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -136,21 +136,21 @@
     
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="#">
-    installation
+    Installation Guide — Image Processing
   </a>
 </li>
 
 
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="usage.html">
-    usage
+    Usage Guide — Image Processing Research Package
   </a>
 </li>
 
 
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="development.html">
-    development
+    Development Guide
   </a>
 </li>
 
@@ -243,21 +243,21 @@
     
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="#">
-    installation
+    Installation Guide — Image Processing
   </a>
 </li>
 
 
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="usage.html">
-    usage
+    Usage Guide — Image Processing Research Package
   </a>
 </li>
 
 
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="development.html">
-    development
+    Development Guide
   </a>
 </li>
 
@@ -348,7 +348,7 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">installation</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Installation Guide — Image Processing</span></li>
   </ul>
 </nav>
 </div>
@@ -365,8 +365,205 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="installation">
-<h1>installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="installation-guide-image-processing">
+<h1>Installation Guide — Image Processing<a class="headerlink" href="#installation-guide-image-processing" title="Link to this heading">#</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>This repository implements a modular image processing framework designed for research-oriented experimentation in classical and kernel-based image analysis methods. The system is structured for reproducibility, extensibility, and integration into scientific workflows.</p>
+<p>The following installation procedure ensures a fully functional environment for development, testing, and experimental execution.</p>
+</section>
+<section id="system-requirements">
+<h2>System Requirements<a class="headerlink" href="#system-requirements" title="Link to this heading">#</a></h2>
+<p>The framework is compatible with modern Linux, macOS, and Windows environments.</p>
+<section id="required">
+<h3>Required:<a class="headerlink" href="#required" title="Link to this heading">#</a></h3>
+<p>Python ≥ 3.10</p>
+<p>pip ≥ 22.0</p>
+<p>git
+(Recommended) virtual environment support: venv, conda, or miniforge</p>
+</section>
+<section id="optional-but-recommended">
+<h3>Optional but recommended:<a class="headerlink" href="#optional-but-recommended" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>JupyterLab (for notebook-based experiments)</p></li>
+<li><p>pre-commit (for development integrity checks)</p></li>
+</ul>
+</section>
+</section>
+<section id="clone-the-repository">
+<h2>1. Clone the Repository<a class="headerlink" href="#clone-the-repository" title="Link to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/intensivedatacomp/image-processing.git
+<span class="nb">cd</span><span class="w"> </span>image-processing
+</pre></div>
+</div>
+</section>
+<section id="create-a-virtual-environment">
+<h2>2. Create a Virtual Environment<a class="headerlink" href="#create-a-virtual-environment" title="Link to this heading">#</a></h2>
+<section id="option-a-venv-standard-python">
+<h3>Option A — venv (standard Python)<a class="headerlink" href="#option-a-venv-standard-python" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
+<span class="nb">source</span><span class="w"> </span>.venv/bin/activate<span class="w">   </span><span class="c1"># Linux / macOS</span>
+.venv<span class="se">\S</span>cripts<span class="se">\a</span>ctivate<span class="w">      </span><span class="c1"># Windows</span>
+</pre></div>
+</div>
+</section>
+<section id="option-b-conda-miniforge-recommended-for-research-workflows">
+<h3>Option B — Conda / Miniforge (recommended for research workflows)<a class="headerlink" href="#option-b-conda-miniforge-recommended-for-research-workflows" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>imgproc<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.11<span class="w"> </span>-y
+conda<span class="w"> </span>activate<span class="w"> </span>imgproc
+</pre></div>
+</div>
+</section>
+</section>
+<section id="install-dependencies">
+<h2>3. Install Dependencies<a class="headerlink" href="#install-dependencies" title="Link to this heading">#</a></h2>
+<section id="core-dependencies">
+<h3>Core dependencies<a class="headerlink" href="#core-dependencies" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+</section>
+<section id="development-dependencies-testing-linting-ci-alignment">
+<h3>Development dependencies (testing, linting, CI alignment)<a class="headerlink" href="#development-dependencies-testing-linting-ci-alignment" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements-dev.txt
+</pre></div>
+</div>
+</section>
+<section id="documentation-dependencies-optional">
+<h3>Documentation dependencies (optional)<a class="headerlink" href="#documentation-dependencies-optional" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements-docs.txt
+</pre></div>
+</div>
+</section>
+</section>
+<section id="install-the-package-in-editable-mode">
+<h2>4. Install the Package in Editable Mode<a class="headerlink" href="#install-the-package-in-editable-mode" title="Link to this heading">#</a></h2>
+<p>This step is required for development and module-level imports.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+</pre></div>
+</div>
+<p>This enables live synchronization between source code and installed package, which is essential for research iteration cycles.</p>
+</section>
+<section id="pre-commit-hooks-recommended-for-contributors">
+<h2>5. Pre-commit Hooks (Recommended for Contributors)<a class="headerlink" href="#pre-commit-hooks-recommended-for-contributors" title="Link to this heading">#</a></h2>
+<p>This repository enforces code quality through pre-commit hooks.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pre-commit<span class="w"> </span>install
+</pre></div>
+</div>
+<p>To manually run all hooks:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pre-commit<span class="w"> </span>run<span class="w"> </span>--all-files
+</pre></div>
+</div>
+</section>
+<section id="running-tests">
+<h2>6. Running Tests<a class="headerlink" href="#running-tests" title="Link to this heading">#</a></h2>
+<p>The project uses pytest for validation of image processing modules.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest
+</pre></div>
+</div>
+<p>For verbose output:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest<span class="w"> </span>-v
+</pre></div>
+</div>
+<section id="test-coverage-includes">
+<h3>Test coverage includes:<a class="headerlink" href="#test-coverage-includes" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Kernel operations</p></li>
+<li><p>Detector logic</p></li>
+<li><p>Parameter validation</p></li>
+<li><p>Combination pipelines</p></li>
+</ul>
+</section>
+</section>
+<section id="running-example-workflows">
+<h2>7. Running Example Workflows<a class="headerlink" href="#running-example-workflows" title="Link to this heading">#</a></h2>
+<p>The repository includes reproducible examples for core functionality.</p>
+<section id="basic-usage-example">
+<h3>Basic usage example<a class="headerlink" href="#basic-usage-example" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>examples/basic_usage.py
+</pre></div>
+</div>
+</section>
+<section id="custom-kernel-demonstration">
+<h3>Custom kernel demonstration<a class="headerlink" href="#custom-kernel-demonstration" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>examples/custom_kernel.py
+</pre></div>
+</div>
+</section>
+<section id="jupyter-based-edge-detection-experiment">
+<h3>Jupyter-based edge detection experiment<a class="headerlink" href="#jupyter-based-edge-detection-experiment" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter<span class="w"> </span>notebook<span class="w"> </span>examples/edge_detection_demo.ipynb
+</pre></div>
+</div>
+</section>
+</section>
+<section id="project-structure">
+<h2>8. Project Structure<a class="headerlink" href="#project-structure" title="Link to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>src/image_processing/
+<span class="w">    </span>combination.py
+<span class="w">    </span>detector.py
+<span class="w">    </span>kernels.py
+<span class="w">    </span>params.py
+</pre></div>
+</div>
+<section id="core-modules">
+<h3>Core modules:<a class="headerlink" href="#core-modules" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>kernels.py — convolutional and filter kernel definitions</p></li>
+<li><p>detector.py — edge and feature detection algorithms</p></li>
+<li><p>combination.py — pipeline composition utilities</p></li>
+<li><p>params.py — parameter validation and configuration layer</p></li>
+</ul>
+</section>
+</section>
+<section id="development-notes">
+<h2>9. Development Notes<a class="headerlink" href="#development-notes" title="Link to this heading">#</a></h2>
+<p>This framework is designed as a research-grade experimental environment, not a production inference library. As such:</p>
+<ul class="simple">
+<li><p>Deterministic behavior is prioritized where possible</p></li>
+<li><p>Functions are modular and independently testable</p></li>
+<li><p>Unit tests are required for all algorithmic changes</p></li>
+<li><p>CI pipeline enforces formatting and validation via pre-commit</p></li>
+</ul>
+</section>
+<section id="troubleshooting">
+<h2>10. Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading">#</a></h2>
+<section id="import-errors">
+<h3>Import errors<a class="headerlink" href="#import-errors" title="Link to this heading">#</a></h3>
+<p>If module imports fail after installation:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+</pre></div>
+</div>
+</section>
+<section id="pre-commit-failing">
+<h3>Pre-commit failing<a class="headerlink" href="#pre-commit-failing" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pre-commit<span class="w"> </span>clean
+pre-commit<span class="w"> </span>install
+</pre></div>
+</div>
+</section>
+<section id="missing-dependencies">
+<h3>Missing dependencies<a class="headerlink" href="#missing-dependencies" title="Link to this heading">#</a></h3>
+<p>Ensure environment consistency:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>pip<span class="w"> </span>setuptools<span class="w"> </span>wheel
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+</section>
+</section>
+<section id="scientific-context">
+<h2>11. Scientific Context<a class="headerlink" href="#scientific-context" title="Link to this heading">#</a></h2>
+<section id="this-repository-is-intended-for-academic-and-applied-research-in">
+<h3>This repository is intended for academic and applied research in:<a class="headerlink" href="#this-repository-is-intended-for-academic-and-applied-research-in" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Classical image filtering</p></li>
+<li><p>Edge detection theory</p></li>
+<li><p>Kernel-based transformations</p></li>
+<li><p>Compositional image processing pipelines</p></li>
+</ul>
+<p>Reproducibility and transparency are core design principles.</p>
+</section>
+</section>
 </section>
 
 
@@ -393,7 +590,7 @@
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">usage</p>
+        <p class="prev-next-title">Usage Guide — Image Processing Research Package</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -407,6 +604,62 @@
                 <dialog id="pst-secondary-sidebar-modal"></dialog>
                 <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#system-requirements">System Requirements</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#required">Required:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-but-recommended">Optional but recommended:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clone-the-repository">1. Clone the Repository</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-virtual-environment">2. Create a Virtual Environment</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#option-a-venv-standard-python">Option A — venv (standard Python)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#option-b-conda-miniforge-recommended-for-research-workflows">Option B — Conda / Miniforge (recommended for research workflows)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-dependencies">3. Install Dependencies</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#core-dependencies">Core dependencies</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#development-dependencies-testing-linting-ci-alignment">Development dependencies (testing, linting, CI alignment)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation-dependencies-optional">Documentation dependencies (optional)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-the-package-in-editable-mode">4. Install the Package in Editable Mode</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-commit-hooks-recommended-for-contributors">5. Pre-commit Hooks (Recommended for Contributors)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-tests">6. Running Tests</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-coverage-includes">Test coverage includes:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-example-workflows">7. Running Example Workflows</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-usage-example">Basic usage example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-kernel-demonstration">Custom kernel demonstration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-based-edge-detection-experiment">Jupyter-based edge detection experiment</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-structure">8. Project Structure</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#core-modules">Core modules:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#development-notes">9. Development Notes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">10. Troubleshooting</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-errors">Import errors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-commit-failing">Pre-commit failing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-dependencies">Missing dependencies</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scientific-context">11. Scientific Context</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#this-repository-is-intended-for-academic-and-applied-research-in">This repository is intended for academic and applied research in:</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
 

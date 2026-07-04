@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>development &#8212; image-processing  documentation</title>
+    <title>Development Guide &#8212; image-processing  documentation</title>
   
   
   
@@ -49,7 +49,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="src" href="api/modules.html" />
-    <link rel="prev" title="usage" href="usage.html" />
+    <link rel="prev" title="Usage Guide — Image Processing Research Package" href="usage.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -136,21 +136,21 @@
     
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="installation.html">
-    installation
+    Installation Guide — Image Processing
   </a>
 </li>
 
 
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="usage.html">
-    usage
+    Usage Guide — Image Processing Research Package
   </a>
 </li>
 
 
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="#">
-    development
+    Development Guide
   </a>
 </li>
 
@@ -243,21 +243,21 @@
     
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="installation.html">
-    installation
+    Installation Guide — Image Processing
   </a>
 </li>
 
 
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="usage.html">
-    usage
+    Usage Guide — Image Processing Research Package
   </a>
 </li>
 
 
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="#">
-    development
+    Development Guide
   </a>
 </li>
 
@@ -348,7 +348,7 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">development</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Development Guide</span></li>
   </ul>
 </nav>
 </div>
@@ -365,8 +365,162 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="development">
-<h1>development<a class="headerlink" href="#development" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="development-guide">
+<h1>Development Guide<a class="headerlink" href="#development-guide" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h1>
+<p>This repository contains a research-oriented Python library focused on image processing, with a particular emphasis on convolution-based feature extraction and edge detection techniques. The system is designed for extensibility, reproducibility, and scientific validation. The architecture supports modular experimentation with kernels, detectors, and parameterized image transformation pipelines.</p>
+<p>The project is implemented in Python (&gt;= 3.12) and follows a strict package structure under <code class="docutils literal notranslate"><span class="pre">src/image_processing/</span></code>.</p>
+<hr class="docutils" />
+<section id="architecture">
+<h2>Architecture<a class="headerlink" href="#architecture" title="Link to this heading">#</a></h2>
+<p>The codebase is organized into clearly separated modules:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">kernels.py</span></code>
+Defines convolution kernels and kernel generation utilities. This module is responsible for low-level filter construction used in image transformations.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">detector.py</span></code>
+Implements edge detection and feature extraction logic. This is the core computational component of the system, building on convolution operations.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">combination.py</span></code>
+Provides utilities for combining multiple kernels and aggregating detection outputs. Used for ensemble-style filtering and composite feature maps.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">params.py</span></code>
+Contains strongly typed parameter definitions and configuration structures used across the pipeline. Ensures reproducibility and experiment traceability.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__init__.py</span></code>
+Exposes the public API of the package.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="development-principles">
+<h2>Development Principles<a class="headerlink" href="#development-principles" title="Link to this heading">#</a></h2>
+<p>This project follows a research-grade development model:</p>
+<ul class="simple">
+<li><p>Deterministic outputs are preferred over stochastic behavior where possible.</p></li>
+<li><p>All transformations should be mathematically explicit and reproducible.</p></li>
+<li><p>No implicit global state is allowed in processing pipelines.</p></li>
+<li><p>Modules are designed to be independently testable and replaceable.</p></li>
+<li><p>Experimental extensions must not break backward compatibility of the core API.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="environment-setup">
+<h2>Environment Setup<a class="headerlink" href="#environment-setup" title="Link to this heading">#</a></h2>
+<section id="requirements">
+<h3>Requirements<a class="headerlink" href="#requirements" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Python &gt;= 3.12</p></li>
+<li><p>Dependencies defined in:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> (runtime)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">requirements-dev.txt</span></code> (development)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">requirements-docs.txt</span></code> (documentation)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="installation">
+<h3>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate<span class="w">  </span><span class="c1"># Linux/macOS</span>
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements-dev.txt
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="development-workflow">
+<h2>Development Workflow<a class="headerlink" href="#development-workflow" title="Link to this heading">#</a></h2>
+<section id="branching-strategy">
+<h3>Branching Strategy<a class="headerlink" href="#branching-strategy" title="Link to this heading">#</a></h3>
+<p>All new features must be developed in isolated branches:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>switch<span class="w"> </span>-c<span class="w"> </span>feature/your-feature-name
+</pre></div>
+</div>
+<p>After implementation:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>.
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Clear and descriptive commit message&quot;</span>
+git<span class="w"> </span>push<span class="w"> </span>--set-upstream<span class="w"> </span>origin<span class="w"> </span>feature/your-feature-name
+</pre></div>
+</div>
+<p>Pull request creation:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xdg-open<span class="w"> </span>https://github.com/dcintlab/image-processing/pull/new/feature/your-feature-name
+</pre></div>
+</div>
+<p>After merge:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>switch<span class="w"> </span>main
+git<span class="w"> </span>pull
+git<span class="w"> </span>branch<span class="w"> </span>-d<span class="w"> </span>feature/your-feature-name
+git<span class="w"> </span>branch<span class="w"> </span>-d<span class="w"> </span>origin/feature/your-feature-name<span class="w"> </span>--remote
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="testing-strategy">
+<h2>Testing Strategy<a class="headerlink" href="#testing-strategy" title="Link to this heading">#</a></h2>
+<p>The project uses <code class="docutils literal notranslate"><span class="pre">pytest</span></code> for validation.</p>
+<p>Test coverage includes:</p>
+<ul class="simple">
+<li><p>Kernel correctness (<code class="docutils literal notranslate"><span class="pre">test_kernels.py</span></code>)</p></li>
+<li><p>Detector stability and output shape validation (<code class="docutils literal notranslate"><span class="pre">test_detector.py</span></code>)</p></li>
+<li><p>Parameter validation (<code class="docutils literal notranslate"><span class="pre">test_params.py</span></code>)</p></li>
+<li><p>Combination logic correctness (<code class="docutils literal notranslate"><span class="pre">test_combination.py</span></code>)</p></li>
+</ul>
+<section id="running-tests">
+<h3>Running Tests<a class="headerlink" href="#running-tests" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest
+</pre></div>
+</div>
+<p>Tests must remain deterministic and independent. Any test relying on external state is considered invalid.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="pre-commit-and-ci">
+<h2>Pre-commit and CI<a class="headerlink" href="#pre-commit-and-ci" title="Link to this heading">#</a></h2>
+<p>A pre-commit pipeline is enforced via:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.pre-commit-config.yaml</span></code></p></li>
+<li><p>GitHub Actions workflow under <code class="docutils literal notranslate"><span class="pre">.github/workflows/pre-commit.yml</span></code></p></li>
+</ul>
+<p>Before pushing changes, developers should ensure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pre-commit<span class="w"> </span>run<span class="w"> </span>--all-files
+</pre></div>
+</div>
+<p>The CI pipeline validates:</p>
+<ul class="simple">
+<li><p>Code formatting consistency</p></li>
+<li><p>Linting rules</p></li>
+<li><p>Test execution</p></li>
+<li><p>Import integrity</p></li>
+</ul>
+</section>
+<section id="adding-new-features">
+<h2>Adding New Features<a class="headerlink" href="#adding-new-features" title="Link to this heading">#</a></h2>
+<p>When introducing a new feature:</p>
+<ol class="arabic simple">
+<li><p>Define scope clearly in a dedicated branch.</p></li>
+<li><p>Extend or reuse existing kernel/detector abstractions.</p></li>
+<li><p>Add corresponding unit tests.</p></li>
+<li><p>Ensure no regression in existing tests.</p></li>
+<li><p>Update documentation if public API changes.</p></li>
+</ol>
+<p>Example feature workflow:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>feature/new-kernel-type → implementation → tests → CI validation → PR → merge
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="research-orientation">
+<h2>Research Orientation<a class="headerlink" href="#research-orientation" title="Link to this heading">#</a></h2>
+<p>This project is not a generic utility library. It is intended as a controlled experimental environment for image processing research.</p>
+<p>All contributions should respect the following constraints:</p>
+<ul class="simple">
+<li><p>Scientific clarity is prioritized over performance optimizations.</p></li>
+<li><p>Code must be explainable in academic or research contexts.</p></li>
+<li><p>Experimental reproducibility is a primary requirement.</p></li>
+<li><p>Any heuristic must be explicitly documented.</p></li>
+</ul>
+</section>
 </section>
 
 
@@ -385,7 +539,7 @@
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">usage</p>
+        <p class="prev-next-title">Usage Guide — Image Processing Research Package</p>
       </div>
     </a>
     <a class="right-next"
@@ -407,6 +561,40 @@
                 <dialog id="pst-secondary-sidebar-modal"></dialog>
                 <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Development Guide</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#architecture">Architecture</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#development-principles">Development Principles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environment-setup">Environment Setup</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements">Requirements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#development-workflow">Development Workflow</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#branching-strategy">Branching Strategy</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-strategy">Testing Strategy</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-tests">Running Tests</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-commit-and-ci">Pre-commit and CI</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-new-features">Adding New Features</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#research-orientation">Research Orientation</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
 
   <div class="sidebar-secondary-item">
 

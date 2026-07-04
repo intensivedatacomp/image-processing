@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>usage &#8212; image-processing  documentation</title>
+    <title>Usage Guide — Image Processing Research Package &#8212; image-processing  documentation</title>
   
   
   
@@ -48,8 +48,8 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="development" href="development.html" />
-    <link rel="prev" title="installation" href="installation.html" />
+    <link rel="next" title="Development Guide" href="development.html" />
+    <link rel="prev" title="Installation Guide — Image Processing" href="installation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -136,21 +136,21 @@
     
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="installation.html">
-    installation
+    Installation Guide — Image Processing
   </a>
 </li>
 
 
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="#">
-    usage
+    Usage Guide — Image Processing Research Package
   </a>
 </li>
 
 
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="development.html">
-    development
+    Development Guide
   </a>
 </li>
 
@@ -243,21 +243,21 @@
     
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="installation.html">
-    installation
+    Installation Guide — Image Processing
   </a>
 </li>
 
 
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="#">
-    usage
+    Usage Guide — Image Processing Research Package
   </a>
 </li>
 
 
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="development.html">
-    development
+    Development Guide
   </a>
 </li>
 
@@ -348,7 +348,7 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">usage</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Usage Guide — Image Processing Research Package</span></li>
   </ul>
 </nav>
 </div>
@@ -365,8 +365,240 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="usage">
-<h1>usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="usage-guide-image-processing-research-package">
+<h1>Usage Guide — Image Processing Research Package<a class="headerlink" href="#usage-guide-image-processing-research-package" title="Link to this heading">#</a></h1>
+<p>This document describes the standardized usage of the Image Processing framework contained in this repository. The implementation is designed for research-grade experiments in GPU-accelerated edge detection based on oriented elongated mask kernels (Antal, 2024: <em>Contour-texture separation, Part 2</em>). The API is intentionally minimal, deterministic, and fully compatible with PyTorch execution workflows.</p>
+<hr class="docutils" />
+<section id="installation">
+<h2>1. Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h2>
+<p>This project is a Python package managed via <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>.</p>
+<section id="recommended-setup-development-research-environment">
+<h3>Recommended setup (development / research environment)<a class="headerlink" href="#recommended-setup-development-research-environment" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>&lt;repository_url&gt;
+<span class="nb">cd</span><span class="w"> </span>image-processing-main
+
+python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate<span class="w">   </span><span class="c1"># Linux / macOS</span>
+<span class="c1"># venv\Scripts\activate    # Windows</span>
+
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+</pre></div>
+</div>
+</section>
+<section id="optional-dependencies">
+<h3>Optional dependencies<a class="headerlink" href="#optional-dependencies" title="Link to this heading">#</a></h3>
+<p>For development and testing:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements-dev.txt
+</pre></div>
+</div>
+<p>For documentation build:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements-docs.txt
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="core-concept">
+<h2>2. Core Concept<a class="headerlink" href="#core-concept" title="Link to this heading">#</a></h2>
+<p>The system implements a multi-orientation convolutional edge detection pipeline:</p>
+<ol class="arabic simple">
+<li><p>A stack of oriented kernels is generated (default: elongated mask kernels).</p></li>
+<li><p>Each kernel is applied via 2D convolution over RGB or grayscale images.</p></li>
+<li><p>The resulting response tensor is aggregated into a single edge-strength map.</p></li>
+<li><p>Optional normalization scales output into <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1]</span></code>.</p></li>
+</ol>
+<p>All operations are executed using PyTorch and are GPU-compatible.</p>
+</section>
+<hr class="docutils" />
+<section id="basic-usage">
+<h2>3. Basic Usage<a class="headerlink" href="#basic-usage" title="Link to this heading">#</a></h2>
+<section id="minimal-example">
+<h3>Minimal Example<a class="headerlink" href="#minimal-example" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">image_processing</span><span class="w"> </span><span class="kn">import</span> <span class="n">EdgeDetector</span>
+
+<span class="c1"># Initialize detector (automatically uses GPU if available)</span>
+<span class="n">detector</span> <span class="o">=</span> <span class="n">EdgeDetector</span><span class="p">()</span>
+
+<span class="c1"># Input image format: (C, H, W), float32 in [0, 1]</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">)</span>
+
+<span class="c1"># Compute edge map</span>
+<span class="n">edges</span> <span class="o">=</span> <span class="n">detector</span><span class="o">.</span><span class="n">detect</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">edges</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>  <span class="c1"># torch.Size([512, 512])</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="expected-input-output-format">
+<h2>4. Expected Input / Output Format<a class="headerlink" href="#expected-input-output-format" title="Link to this heading">#</a></h2>
+<section id="input">
+<h3>Input<a class="headerlink" href="#input" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code></p></li>
+<li><p>Shape: <code class="docutils literal notranslate"><span class="pre">(C,</span> <span class="pre">H,</span> <span class="pre">W)</span></code></p></li>
+<li><p>Channels:</p>
+<ul>
+<li><p>1 = grayscale</p></li>
+<li><p>3 = RGB</p></li>
+</ul>
+</li>
+<li><p>Value range: <code class="docutils literal notranslate"><span class="pre">[0.0,</span> <span class="pre">1.0]</span></code></p></li>
+<li><p>Device: CPU or CUDA (auto-migrated internally)</p></li>
+</ul>
+</section>
+<section id="output">
+<h3>Output<a class="headerlink" href="#output" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code></p></li>
+<li><p>Shape: <code class="docutils literal notranslate"><span class="pre">(H,</span> <span class="pre">W)</span></code></p></li>
+<li><p>Value range: <code class="docutils literal notranslate"><span class="pre">[0.0,</span> <span class="pre">1.0]</span></code> (if normalization enabled)</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="advanced-configuration">
+<h2>5. Advanced Configuration<a class="headerlink" href="#advanced-configuration" title="Link to this heading">#</a></h2>
+<section id="custom-kernel-configuration">
+<h3>5.1 Custom Kernel Configuration<a class="headerlink" href="#custom-kernel-configuration" title="Link to this heading">#</a></h3>
+<p>The detector supports full customization of the kernel generation process.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">image_processing</span><span class="w"> </span><span class="kn">import</span> <span class="n">EdgeDetector</span><span class="p">,</span> <span class="n">ElongatedMaskKernel</span><span class="p">,</span> <span class="n">ElongatedMaskParams</span>
+
+<span class="n">params</span> <span class="o">=</span> <span class="n">ElongatedMaskParams</span><span class="p">(</span>
+    <span class="n">n_angles</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span>
+    <span class="n">kernel_half_size</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+    <span class="n">stripe_half_width</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">stripe_half_length</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+    <span class="n">length_falloff</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">width_falloff</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">kernel</span> <span class="o">=</span> <span class="n">ElongatedMaskKernel</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+
+<span class="n">detector</span> <span class="o">=</span> <span class="n">EdgeDetector</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="n">kernel</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="custom-combination-function">
+<h3>5.2 Custom Combination Function<a class="headerlink" href="#custom-combination-function" title="Link to this heading">#</a></h3>
+<p>By default, responses are aggregated using a sum-of-squares strategy. This can be replaced:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">image_processing</span><span class="w"> </span><span class="kn">import</span> <span class="n">EdgeDetector</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">image_processing.combination</span><span class="w"> </span><span class="kn">import</span> <span class="n">sum_of_powers</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">custom_combine</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">sum_of_powers</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">detector</span> <span class="o">=</span> <span class="n">EdgeDetector</span><span class="p">(</span><span class="n">combine_fn</span><span class="o">=</span><span class="n">custom_combine</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="disabling-normalization">
+<h3>5.3 Disabling Normalization<a class="headerlink" href="#disabling-normalization" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">detector</span> <span class="o">=</span> <span class="n">EdgeDetector</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This returns raw edge intensity values without scaling.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="pipeline-behavior-technical-specification">
+<h2>6. Pipeline Behavior (Technical Specification)<a class="headerlink" href="#pipeline-behavior-technical-specification" title="Link to this heading">#</a></h2>
+<p>Given an input tensor <code class="docutils literal notranslate"><span class="pre">I</span> <span class="pre">∈</span> <span class="pre">R^(C×H×W)</span></code>:</p>
+<ol class="arabic">
+<li><p>Tensor is cast to <code class="docutils literal notranslate"><span class="pre">float32</span></code></p></li>
+<li><p>Moved to kernel device (CPU/CUDA)</p></li>
+<li><p>Convolution applied:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">R</span><span class="p">[</span><span class="n">c</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">conv2d</span><span class="p">(</span><span class="n">I</span><span class="p">[</span><span class="n">c</span><span class="p">],</span> <span class="n">K</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
+</pre></div>
+</div>
+</li>
+<li><p>Response tensor shape:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>R ∈ R^(C × N × H × W)
+</pre></div>
+</div>
+</li>
+<li><p>Aggregation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">E</span> <span class="o">=</span> <span class="n">combine_fn</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Optional normalization:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">E</span> <span class="o">=</span> <span class="n">E</span> <span class="o">/</span> <span class="nb">max</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="example-research-workflow">
+<h2>7. Example Research Workflow<a class="headerlink" href="#example-research-workflow" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">image_processing</span><span class="w"> </span><span class="kn">import</span> <span class="n">EdgeDetector</span>
+
+<span class="n">detector</span> <span class="o">=</span> <span class="n">EdgeDetector</span><span class="p">()</span>
+
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">)</span>  <span class="c1"># example batch</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dataset</span><span class="p">)):</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">edges</span> <span class="o">=</span> <span class="n">detector</span><span class="o">.</span><span class="n">detect</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">edges</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="reproducibility-notes">
+<h2>8. Reproducibility Notes<a class="headerlink" href="#reproducibility-notes" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>All kernel generation is deterministic given identical parameters.</p></li>
+<li><p>GPU execution may introduce minor floating-point variance.</p></li>
+<li><p>Results are stable across CPU/GPU for identical PyTorch versions.</p></li>
+<li><p>Recommended environment: Python ≥ 3.10, PyTorch ≥ 2.0</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="performance-considerations">
+<h2>9. Performance Considerations<a class="headerlink" href="#performance-considerations" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>GPU execution is strongly recommended for <code class="docutils literal notranslate"><span class="pre">kernel_half_size</span> <span class="pre">&gt;</span> <span class="pre">20</span></code></p></li>
+<li><p>Larger <code class="docutils literal notranslate"><span class="pre">n_angles</span></code> increases computational complexity linearly</p></li>
+<li><p>Memory usage scales with <code class="docutils literal notranslate"><span class="pre">(C</span> <span class="pre">×</span> <span class="pre">N</span> <span class="pre">×</span> <span class="pre">H</span> <span class="pre">×</span> <span class="pre">W)</span></code></p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">torch.no_grad()</span></code> during inference to reduce overhead</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="common-issues">
+<h2>10. Common Issues<a class="headerlink" href="#common-issues" title="Link to this heading">#</a></h2>
+<section id="shape-mismatch">
+<h3>Shape mismatch<a class="headerlink" href="#shape-mismatch" title="Link to this heading">#</a></h3>
+<p>Ensure input is <code class="docutils literal notranslate"><span class="pre">(C,</span> <span class="pre">H,</span> <span class="pre">W)</span></code> not <code class="docutils literal notranslate"><span class="pre">(H,</span> <span class="pre">W,</span> <span class="pre">C)</span></code>.</p>
+</section>
+<section id="device-mismatch">
+<h3>Device mismatch<a class="headerlink" href="#device-mismatch" title="Link to this heading">#</a></h3>
+<p>All tensors are automatically moved, but manual tensors passed into custom functions must match device.</p>
+</section>
+<section id="slow-execution">
+<h3>Slow execution<a class="headerlink" href="#slow-execution" title="Link to this heading">#</a></h3>
+<p>Reduce:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n_angles</span></code></p></li>
+<li><p>kernel size</p></li>
+<li><p>input resolution</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="summary">
+<h2>11. Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<p>This package provides a modular, research-oriented implementation of oriented kernel-based edge detection. It is designed for experimental reproducibility, extensibility of kernel design, and GPU-accelerated processing of image data in scientific workflows.</p>
+</section>
 </section>
 
 
@@ -385,7 +617,7 @@
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">installation</p>
+        <p class="prev-next-title">Installation Guide — Image Processing</p>
       </div>
     </a>
     <a class="right-next"
@@ -393,7 +625,7 @@
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">development</p>
+        <p class="prev-next-title">Development Guide</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -407,6 +639,49 @@
                 <dialog id="pst-secondary-sidebar-modal"></dialog>
                 <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">1. Installation</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recommended-setup-development-research-environment">Recommended setup (development / research environment)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-dependencies">Optional dependencies</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#core-concept">2. Core Concept</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-usage">3. Basic Usage</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#minimal-example">Minimal Example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expected-input-output-format">4. Expected Input / Output Format</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#input">Input</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#output">Output</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-configuration">5. Advanced Configuration</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-kernel-configuration">5.1 Custom Kernel Configuration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-combination-function">5.2 Custom Combination Function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#disabling-normalization">5.3 Disabling Normalization</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline-behavior-technical-specification">6. Pipeline Behavior (Technical Specification)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-research-workflow">7. Example Research Workflow</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducibility-notes">8. Reproducibility Notes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-considerations">9. Performance Considerations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-issues">10. Common Issues</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shape-mismatch">Shape mismatch</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#device-mismatch">Device mismatch</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slow-execution">Slow execution</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">11. Summary</a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
 
