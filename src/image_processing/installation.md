@@ -45,7 +45,7 @@ conda activate imgproc
 pip install -r requirements.txt
 ```
 ### Development dependencies (testing, linting, CI alignment)
-```bash 
+```bash
 pip install -r requirements-dev.txt
 ```
 ### Documentation dependencies (optional)
