@@ -145,6 +145,19 @@ This returns raw edge intensity values without scaling.
 
 ---
 
+### 5.4 Visualizing Kernels
+
+The generated kernel bank can be plotted directly, either as a grid of all
+orientations or a single close-up. See [Plotting Kernels](plotting.md) for
+details.
+
+```python
+kernel.plot_all(save_path="grid.png")
+kernel.plot(index=0, save_path="single.png")
+```
+
+---
+
 ## 6. Pipeline Behavior (Technical Specification)
 
 Given an input tensor `I ∈ R^(C×H×W)`:

@@ -7,5 +7,6 @@ Welcome to the documentation!
 
    installation
    usage
+   plotting
    development
    api/modules
