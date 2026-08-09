@@ -114,6 +114,6 @@ xdg-open https://github.com/dcintlab/image-processing/pull/new/feature/your-awes
 ```bash
 git switch main
 git pull
-git branch -d feature/your-awesome-feature #Delete local branch
-git push origin --delete feature/your-awesome-feature #Delete remote branch
+git branch -d feature/your-awesome-feature
+git push origin --delete feature/your-awesome-feature
 ```
