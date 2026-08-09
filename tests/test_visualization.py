@@ -39,9 +39,7 @@ class TestPlotKernelGrid:
         assert out.stat().st_size > 0
         plt.close(fig)
 
-    def test_works_with_custom_params(
-        self, fine_kernel: ElongatedMaskKernel
-    ) -> None:
+    def test_works_with_custom_params(self, fine_kernel: ElongatedMaskKernel) -> None:
         fig = plot_kernel_grid(fine_kernel, show=False)
         assert isinstance(fig, plt.Figure)
         plt.close(fig)
@@ -70,9 +68,7 @@ class TestPlotSingleKernel:
         assert out.stat().st_size > 0
         plt.close(fig)
 
-    def test_out_of_range_index_raises(
-        self, cpu_kernel: ElongatedMaskKernel
-    ) -> None:
+    def test_out_of_range_index_raises(self, cpu_kernel: ElongatedMaskKernel) -> None:
         n = cpu_kernel.params.n_angles
         with pytest.raises(IndexError):
             plot_single_kernel(cpu_kernel, index=n, show=False)

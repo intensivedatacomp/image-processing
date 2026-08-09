@@ -12,19 +12,19 @@ The project is implemented in Python (>= 3.12) and follows a strict package stru
 
 The codebase is organized into clearly separated modules:
 
-- `kernels.py`  
+- `kernels.py`
   Defines convolution kernels and kernel generation utilities. This module is responsible for low-level filter construction used in image transformations.
 
-- `detector.py`  
+- `detector.py`
   Implements edge detection and feature extraction logic. This is the core computational component of the system, building on convolution operations.
 
-- `combination.py`  
+- `combination.py`
   Provides utilities for combining multiple kernels and aggregating detection outputs. Used for ensemble-style filtering and composite feature maps.
 
-- `params.py`  
+- `params.py`
   Contains strongly typed parameter definitions and configuration structures used across the pipeline. Ensures reproducibility and experiment traceability.
 
-- `__init__.py`  
+- `__init__.py`
   Exposes the public API of the package.
 
 ---

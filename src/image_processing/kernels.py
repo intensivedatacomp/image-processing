@@ -3,7 +3,8 @@
 from __future__ import annotations
 
 import abc
-from typing import cast
+from pathlib import Path
+from typing import TYPE_CHECKING, cast
 
 import numpy as np
 import PIL.Image
@@ -13,11 +14,18 @@ import torchvision.transforms
 
 from .params import BaseKernelParams, ElongatedMaskParams
 
+if TYPE_CHECKING:
+    from matplotlib.figure import Figure
+
 
 def _resolve_device(device: torch.device | str | None) -> torch.device:
-    if device is None:
-        return torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.mps.is_available() else "cpu")
-    return torch.device(device)
+    if device is not None:
+        return torch.device(device)
+    if torch.cuda.is_available():
+        return torch.device("cuda")
+    if torch.mps.is_available():
+        return torch.device("mps")
+    return torch.device("cpu")
 
 
 class BaseKernel(abc.ABC):
@@ -84,7 +92,12 @@ class BaseKernel(abc.ABC):
         """
         self._cache = None
 
-    def plot_all(self, cols: int = 6, save_path=None, show: bool = True):
+    def plot_all(
+        self,
+        cols: int = 6,
+        save_path: str | Path | None = None,
+        show: bool = True,
+    ) -> Figure:
         """Plot every kernel orientation in a single grid figure.
 
         Thin convenience wrapper around
@@ -108,7 +121,12 @@ class BaseKernel(abc.ABC):
 
         return plot_kernel_grid(self, cols=cols, save_path=save_path, show=show)
 
-    def plot(self, index: int = 0, save_path=None, show: bool = True):
+    def plot(
+        self,
+        index: int = 0,
+        save_path: str | Path | None = None,
+        show: bool = True,
+    ) -> Figure:
         """Plot a single kernel orientation.
 
         Thin convenience wrapper around
