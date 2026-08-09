@@ -148,6 +148,13 @@
 
 
 <li class="nav-item ">
+  <a class="nav-link nav-internal" href="../plotting.html">
+    Plotting Kernels
+  </a>
+</li>
+
+
+<li class="nav-item ">
   <a class="nav-link nav-internal" href="../development.html">
     Development Guide
   </a>
@@ -250,6 +257,13 @@
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../usage.html">
     Usage Guide — Image Processing Research Package
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../plotting.html">
+    Plotting Kernels
   </a>
 </li>
 
@@ -673,6 +687,52 @@ access and can be discarded with <a class="reference internal" href="#image_proc
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="image_processing.kernels.BaseKernel.plot">
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/image_processing/kernels.html#BaseKernel.plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#image_processing.kernels.BaseKernel.plot" title="Link to this definition">#</a></dt>
+<dd><p>Plot a single kernel orientation.</p>
+<p>Thin convenience wrapper around
+<code class="xref py py-func docutils literal notranslate"><span class="pre">image_processing.visualization.plot_single_kernel()</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Which orientation (0-indexed) to plot.</p></li>
+<li><p><strong>save_path</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span>) – If given, saves the figure to this path.</p></li>
+<li><p><strong>show</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Whether to display the figure with <code class="docutils literal notranslate"><span class="pre">plt.show()</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The created figure.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Figure</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="image_processing.kernels.BaseKernel.plot_all">
+<span class="sig-name descname"><span class="pre">plot_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/image_processing/kernels.html#BaseKernel.plot_all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#image_processing.kernels.BaseKernel.plot_all" title="Link to this definition">#</a></dt>
+<dd><p>Plot every kernel orientation in a single grid figure.</p>
+<p>Thin convenience wrapper around
+<code class="xref py py-func docutils literal notranslate"><span class="pre">image_processing.visualization.plot_kernel_grid()</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cols</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Number of grid columns.</p></li>
+<li><p><strong>save_path</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span>) – If given, saves the figure to this path.</p></li>
+<li><p><strong>show</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Whether to display the figure with <code class="docutils literal notranslate"><span class="pre">plt.show()</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The created figure.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Figure</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="image_processing.kernels.BaseKernel.reset">
 <span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/image_processing/kernels.html#BaseKernel.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#image_processing.kernels.BaseKernel.reset" title="Link to this definition">#</a></dt>
 <dd><p>Invalidate the cached kernels.</p>
@@ -956,6 +1016,52 @@ access and can be discarded with <a class="reference internal" href="#image_proc
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>torch.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="image_processing.BaseKernel.plot">
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/image_processing/kernels.html#BaseKernel.plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#image_processing.BaseKernel.plot" title="Link to this definition">#</a></dt>
+<dd><p>Plot a single kernel orientation.</p>
+<p>Thin convenience wrapper around
+<code class="xref py py-func docutils literal notranslate"><span class="pre">image_processing.visualization.plot_single_kernel()</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Which orientation (0-indexed) to plot.</p></li>
+<li><p><strong>save_path</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span>) – If given, saves the figure to this path.</p></li>
+<li><p><strong>show</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Whether to display the figure with <code class="docutils literal notranslate"><span class="pre">plt.show()</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The created figure.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Figure</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="image_processing.BaseKernel.plot_all">
+<span class="sig-name descname"><span class="pre">plot_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/image_processing/kernels.html#BaseKernel.plot_all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#image_processing.BaseKernel.plot_all" title="Link to this definition">#</a></dt>
+<dd><p>Plot every kernel orientation in a single grid figure.</p>
+<p>Thin convenience wrapper around
+<code class="xref py py-func docutils literal notranslate"><span class="pre">image_processing.visualization.plot_kernel_grid()</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cols</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Number of grid columns.</p></li>
+<li><p><strong>save_path</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span>) – If given, saves the figure to this path.</p></li>
+<li><p><strong>show</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Whether to display the figure with <code class="docutils literal notranslate"><span class="pre">plt.show()</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The created figure.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Figure</span></code></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1271,6 +1377,56 @@ is multiplied by <code class="docutils literal notranslate"><span class="pre">1<
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="image_processing.plot_kernel_grid">
+<span class="sig-prename descclassname"><span class="pre">image_processing.</span></span><span class="sig-name descname"><span class="pre">plot_kernel_grid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kernel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/image_processing/visualization.html#plot_kernel_grid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#image_processing.plot_kernel_grid" title="Link to this definition">#</a></dt>
+<dd><p>Plot every orientation of a kernel bank in a single grid figure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>kernel</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#image_processing.kernels.BaseKernel" title="image_processing.kernels.BaseKernel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseKernel</span></code></a></span>) – A kernel instance whose <a class="reference internal" href="#image_processing.kernels.BaseKernel.kernels" title="image_processing.kernels.BaseKernel.kernels"><code class="xref py py-attr docutils literal notranslate"><span class="pre">kernels</span></code></a>
+tensor will be built (if not cached yet), moved to CPU, and plotted.</p></li>
+<li><p><strong>cols</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Number of grid columns. The number of rows is derived from
+<code class="docutils literal notranslate"><span class="pre">kernel.params.n_angles</span></code>.</p></li>
+<li><p><strong>save_path</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span>) – If given, the figure is saved to this path (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;kernel_grid.png&quot;</span></code>).</p></li>
+<li><p><strong>show</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Whether to display the figure with <code class="docutils literal notranslate"><span class="pre">plt.show()</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The created figure.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Figure</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="image_processing.plot_single_kernel">
+<span class="sig-prename descclassname"><span class="pre">image_processing.</span></span><span class="sig-name descname"><span class="pre">plot_single_kernel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kernel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/image_processing/visualization.html#plot_single_kernel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#image_processing.plot_single_kernel" title="Link to this definition">#</a></dt>
+<dd><p>Plot a single orientation of a kernel bank.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>kernel</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#image_processing.kernels.BaseKernel" title="image_processing.kernels.BaseKernel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseKernel</span></code></a></span>) – A kernel instance whose <a class="reference internal" href="#image_processing.kernels.BaseKernel.kernels" title="image_processing.kernels.BaseKernel.kernels"><code class="xref py py-attr docutils literal notranslate"><span class="pre">kernels</span></code></a>
+tensor will be built (if not cached yet), moved to CPU, and plotted.</p></li>
+<li><p><strong>index</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Which orientation (0-indexed) to plot.</p></li>
+<li><p><strong>save_path</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span>) – If given, the figure is saved to this path (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;kernel_single.png&quot;</span></code>).</p></li>
+<li><p><strong>show</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Whether to display the figure with <code class="docutils literal notranslate"><span class="pre">plt.show()</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The created figure.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Figure</span></code></span></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>IndexError</strong> – If <code class="docutils literal notranslate"><span class="pre">index</span></code> is out of range for the kernel bank.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="image_processing.sum_of_abs">
 <span class="sig-prename descclassname"><span class="pre">image_processing.</span></span><span class="sig-name descname"><span class="pre">sum_of_abs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">response</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/image_processing/combination.html#sum_of_abs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#image_processing.sum_of_abs" title="Link to this definition">#</a></dt>
 <dd><p>Sum absolute responses over all colour channels and kernel orientations.</p>
@@ -1411,6 +1567,8 @@ equivalent to <a class="reference internal" href="#image_processing.sum_of_abs" 
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#image_processing.kernels.BaseKernel"><code class="docutils literal notranslate"><span class="pre">BaseKernel</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#image_processing.kernels.BaseKernel.build"><code class="docutils literal notranslate"><span class="pre">BaseKernel.build()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#image_processing.kernels.BaseKernel.kernels"><code class="docutils literal notranslate"><span class="pre">BaseKernel.kernels</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#image_processing.kernels.BaseKernel.plot"><code class="docutils literal notranslate"><span class="pre">BaseKernel.plot()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#image_processing.kernels.BaseKernel.plot_all"><code class="docutils literal notranslate"><span class="pre">BaseKernel.plot_all()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#image_processing.kernels.BaseKernel.reset"><code class="docutils literal notranslate"><span class="pre">BaseKernel.reset()</span></code></a></li>
 </ul>
 </li>
@@ -1443,6 +1601,8 @@ equivalent to <a class="reference internal" href="#image_processing.sum_of_abs" 
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#image_processing.BaseKernel"><code class="docutils literal notranslate"><span class="pre">BaseKernel</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#image_processing.BaseKernel.build"><code class="docutils literal notranslate"><span class="pre">BaseKernel.build()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#image_processing.BaseKernel.kernels"><code class="docutils literal notranslate"><span class="pre">BaseKernel.kernels</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#image_processing.BaseKernel.plot"><code class="docutils literal notranslate"><span class="pre">BaseKernel.plot()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#image_processing.BaseKernel.plot_all"><code class="docutils literal notranslate"><span class="pre">BaseKernel.plot_all()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#image_processing.BaseKernel.reset"><code class="docutils literal notranslate"><span class="pre">BaseKernel.reset()</span></code></a></li>
 </ul>
 </li>
@@ -1469,6 +1629,8 @@ equivalent to <a class="reference internal" href="#image_processing.sum_of_abs" 
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#image_processing.max_abs"><code class="docutils literal notranslate"><span class="pre">max_abs()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#image_processing.plot_kernel_grid"><code class="docutils literal notranslate"><span class="pre">plot_kernel_grid()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#image_processing.plot_single_kernel"><code class="docutils literal notranslate"><span class="pre">plot_single_kernel()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#image_processing.sum_of_abs"><code class="docutils literal notranslate"><span class="pre">sum_of_abs()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#image_processing.sum_of_powers"><code class="docutils literal notranslate"><span class="pre">sum_of_powers()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#image_processing.sum_of_squares"><code class="docutils literal notranslate"><span class="pre">sum_of_squares()</span></code></a></li>

@@ -48,7 +48,7 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Development Guide" href="development.html" />
+    <link rel="next" title="Plotting Kernels" href="plotting.html" />
     <link rel="prev" title="Installation Guide — Image Processing" href="installation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -144,6 +144,13 @@
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="#">
     Usage Guide — Image Processing Research Package
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="plotting.html">
+    Plotting Kernels
   </a>
 </li>
 
@@ -251,6 +258,13 @@
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="#">
     Usage Guide — Image Processing Research Package
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="plotting.html">
+    Plotting Kernels
   </a>
 </li>
 
@@ -505,6 +519,17 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 </div>
 <p>This returns raw edge intensity values without scaling.</p>
 </section>
+<hr class="docutils" />
+<section id="visualizing-kernels">
+<h3>5.4 Visualizing Kernels<a class="headerlink" href="#visualizing-kernels" title="Link to this heading">#</a></h3>
+<p>The generated kernel bank can be plotted directly, either as a grid of all
+orientations or a single close-up. See <a class="reference internal" href="plotting.html"><span class="std std-doc">Plotting Kernels</span></a> for
+details.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">kernel</span><span class="o">.</span><span class="n">plot_all</span><span class="p">(</span><span class="n">save_path</span><span class="o">=</span><span class="s2">&quot;grid.png&quot;</span><span class="p">)</span>
+<span class="n">kernel</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">save_path</span><span class="o">=</span><span class="s2">&quot;single.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
 </section>
 <hr class="docutils" />
 <section id="pipeline-behavior-technical-specification">
@@ -622,11 +647,11 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
       </div>
     </a>
     <a class="right-next"
-       href="development.html"
+       href="plotting.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Development Guide</p>
+        <p class="prev-next-title">Plotting Kernels</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -668,6 +693,7 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-kernel-configuration">5.1 Custom Kernel Configuration</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-combination-function">5.2 Custom Combination Function</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#disabling-normalization">5.3 Disabling Normalization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-kernels">5.4 Visualizing Kernels</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline-behavior-technical-specification">6. Pipeline Behavior (Technical Specification)</a></li>
