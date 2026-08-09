@@ -3,7 +3,8 @@
 from __future__ import annotations
 
 import abc
-from typing import cast
+from pathlib import Path
+from typing import TYPE_CHECKING, cast
 
 import numpy as np
 import PIL.Image
@@ -13,11 +14,18 @@ import torchvision.transforms
 
 from .params import BaseKernelParams, ElongatedMaskParams
 
+if TYPE_CHECKING:
+    from matplotlib.figure import Figure
+
 
 def _resolve_device(device: torch.device | str | None) -> torch.device:
-    if device is None:
-        return torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.mps.is_available() else "cpu")
-    return torch.device(device)
+    if device is not None:
+        return torch.device(device)
+    if torch.cuda.is_available():
+        return torch.device("cuda")
+    if torch.mps.is_available():
+        return torch.device("mps")
+    return torch.device("cpu")
 
 
 class BaseKernel(abc.ABC):
@@ -83,6 +91,64 @@ class BaseKernel(abc.ABC):
         :meth:`build`.
         """
         self._cache = None
+
+    def plot_all(
+        self,
+        cols: int = 6,
+        save_path: str | Path | None = None,
+        show: bool = True,
+    ) -> Figure:
+        """Plot every kernel orientation in a single grid figure.
+
+        Thin convenience wrapper around
+        :func:`image_processing.visualization.plot_kernel_grid`.
+
+        Parameters
+        ----------
+        cols : int
+            Number of grid columns.
+        save_path : str or pathlib.Path or None
+            If given, saves the figure to this path.
+        show : bool
+            Whether to display the figure with ``plt.show()``.
+
+        Returns
+        -------
+        matplotlib.figure.Figure
+            The created figure.
+        """
+        from .visualization import plot_kernel_grid
+
+        return plot_kernel_grid(self, cols=cols, save_path=save_path, show=show)
+
+    def plot(
+        self,
+        index: int = 0,
+        save_path: str | Path | None = None,
+        show: bool = True,
+    ) -> Figure:
+        """Plot a single kernel orientation.
+
+        Thin convenience wrapper around
+        :func:`image_processing.visualization.plot_single_kernel`.
+
+        Parameters
+        ----------
+        index : int
+            Which orientation (0-indexed) to plot.
+        save_path : str or pathlib.Path or None
+            If given, saves the figure to this path.
+        show : bool
+            Whether to display the figure with ``plt.show()``.
+
+        Returns
+        -------
+        matplotlib.figure.Figure
+            The created figure.
+        """
+        from .visualization import plot_single_kernel
+
+        return plot_single_kernel(self, index=index, save_path=save_path, show=show)
 
 
 class ElongatedMaskKernel(BaseKernel):

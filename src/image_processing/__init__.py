@@ -90,6 +90,12 @@ from .params import (
 from .params import (
     ElongatedMaskParams as ElongatedMaskParams,
 )
+from .visualization import (
+    plot_kernel_grid as plot_kernel_grid,
+)
+from .visualization import (
+    plot_single_kernel as plot_single_kernel,
+)
 
 __all__ = [
     "BaseKernel",
@@ -99,6 +105,8 @@ __all__ = [
     "ElongatedMaskKernel",
     "ElongatedMaskParams",
     "max_abs",
+    "plot_kernel_grid",
+    "plot_single_kernel",
     "sum_of_abs",
     "sum_of_powers",
     "sum_of_squares",
